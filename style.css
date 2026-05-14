@@ -1,0 +1,170 @@
+/* ──────────────────────────────────────────────
+   RESET & BASE
+   ────────────────────────────────────────────── */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ──────────────────────────────────────────────
+   LAYOUT — two-column flex container
+   ────────────────────────────────────────────── */
+#container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Left panel scrolls independently as history grows */
+#left-panel {
+    width: 32%;
+    background-color: #C8B89A; /* warm tan matching project screenshots */
+    padding: 16px 14px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#map {
+    flex: 1;
+    height: 100%;
+}
+
+/* ──────────────────────────────────────────────
+   HEADER
+   ────────────────────────────────────────────── */
+#header h2 {
+    font-size: 1.05em;
+    font-weight: bold;
+    color: #000;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+/* ──────────────────────────────────────────────
+   TIMER
+   ────────────────────────────────────────────── */
+#timer-container {
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+/* ──────────────────────────────────────────────
+   QUESTION / ANSWER HISTORY
+   ────────────────────────────────────────────── */
+#question-history {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.history-item {
+    display: block;
+    padding: 3px 10px;
+    font-size: 0.85em;
+    text-align: center;
+}
+
+/* Blue row with white text for each question prompt */
+.question-item {
+    background-color: #2E5FA3;
+    color: #fff;
+}
+
+/* Answer feedback — no background, just colored italic text */
+.correct-text {
+    background-color: transparent;
+    color: #FFD700; /* gold */
+    font-style: italic;
+}
+
+.incorrect-text {
+    background-color: transparent;
+    color: #EE1111; /* red */
+    font-style: italic;
+}
+
+/* ──────────────────────────────────────────────
+   END-GAME SCORE
+   ────────────────────────────────────────────── */
+#score-display {
+    font-size: 2.6em;
+    font-weight: bold;
+    color: #000;
+    line-height: 1.2;
+    margin-top: 16px;
+}
+
+#score-display.hidden {
+    display: none;
+}
+
+/* ──────────────────────────────────────────────
+   HIGH SCORE
+   ────────────────────────────────────────────── */
+#high-score-display {
+    font-size: 0.8em;
+    color: #444;
+    margin-top: 10px;
+}
+
+.new-record {
+    color: #007700;
+    font-weight: bold;
+}
+
+/* ──────────────────────────────────────────────
+   PLAY AGAIN BUTTON
+   ────────────────────────────────────────────── */
+#replay-btn {
+    margin-top: 14px;
+    padding: 8px 18px;
+    font-size: 0.95em;
+    font-weight: bold;
+    background-color: #2E5FA3;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    align-self: flex-start;
+    transition: background-color 0.2s;
+}
+
+#replay-btn:hover {
+    background-color: #1a3f7a;
+}
+
+/* ──────────────────────────────────────────────
+   ANIMATIONS
+   ────────────────────────────────────────────── */
+
+/* Shake: applied to the left panel on a wrong answer */
+@keyframes shake {
+    0%,  100% { transform: translateX(0);   }
+    20%       { transform: translateX(-9px); }
+    40%       { transform: translateX(9px);  }
+    60%       { transform: translateX(-6px); }
+    80%       { transform: translateX(6px);  }
+}
+
+.shake {
+    animation: shake 0.5s ease;
+}
+
+/* Score pop-in at end of game */
+@keyframes scoreReveal {
+    from { opacity: 0; transform: scale(0.3); }
+    to   { opacity: 1; transform: scale(1);   }
+}
+
+.score-animate {
+    animation: scoreReveal 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}

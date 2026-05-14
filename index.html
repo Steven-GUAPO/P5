@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSUN Map Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="container">
+
+        <!-- ── Left Panel: Quiz UI ── -->
+        <div id="left-panel">
+
+            <div id="header">
+                <h2>Map Quiz. Please double click<br>on the map the location of:</h2>
+            </div>
+
+            <div id="timer-container">
+                Time: <span id="timer">0:00</span>
+            </div>
+
+            <!-- Question and answer history rows are appended here dynamically -->
+            <div id="question-history"></div>
+
+            <!-- Hidden until all 5 questions are answered -->
+            <div id="score-display" class="hidden"></div>
+
+            <div id="high-score-display">
+                Best: <span id="best-time">--</span>
+            </div>
+
+        </div>
+
+        <!-- ── Right Panel: Google Map ── -->
+        <div id="map"></div>
+
+    </div>
+
+    <!-- jQuery: used for DOM manipulation in the quiz panel -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!--
+        App logic must load BEFORE the Maps API script so that
+        initMap() is defined when the API calls it as its callback.
+    -->
+    <script src="app.js"></script>
+
+    <!--
+        Google Maps JavaScript API
+    -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsXloMlvu44LbCgJwWnHU59aIOIbT_MUA&callback=initMap">
+    </script>
+
+</body>
+</html>
